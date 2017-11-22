@@ -111,7 +111,7 @@ var MoviesList = React.createClass({
 
         return (
             
-            React.createElement('ul', {moviesArray: movies}, // w render zawsze musimy zwracac tylko jeden element, dlatego tutaj 
+            React.createElement('ul', {}, // w render zawsze musimy zwracac tylko jeden element, dlatego tutaj 
                                                                 // na gorze dajemy 'ul' ktore jednoczesnie bedzie wrapperem dla mapowanych elementow
                                                                 // (ten "tylko jeden element" moze zawierac wiele innych w sobie)
                 movies.map(function(movie){
