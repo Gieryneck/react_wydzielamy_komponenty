@@ -97,6 +97,8 @@ var MovieImage = React.createClass({
     },
 });
 
+/*
+not working
 
 var MoviesList = React.createClass({
 
@@ -107,27 +109,36 @@ var MoviesList = React.createClass({
 
     render: function () {
 
+        return (
 
-        movies.map(function (movie) {
+            movies.map(function (movie) {
 
-            React.createElement('li', { key: movie.id },
-                React.createElement(Movie, { movieObject: movie })
+                React.createElement('li', { key: movie.id },
+                    React.createElement(Movie, { movieObject: movie })
 
-            );
-        });
+                );
+            })
+
+
+        );
+
 
     },
 
 }); 
+*/
 
+var moviesElements = movies.map(function (movie) {
 
+    return React.createElement('li', {key: movie.id},
+        React.createElement(Movie, {movieObject: movie})
+    );
+});
 
 var element = 
     React.createElement('div', {}, 
         React.createElement('h1', {}, 'Lista filmow'),
-        React.createElement('ul', {}, 
-            React.createElement(MoviesList, {movies:movies})
-        )
+        React.createElement('ul', {}, moviesElements)     
 );
 
 ReactDOM.render(element, document.getElementById('app'));
