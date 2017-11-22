@@ -102,19 +102,27 @@ var MoviesList = React.createClass({
 
     propTypes: {
 
-        movies: React.PropTypes.array.isRequired,
+        moviesArray: React.PropTypes.array.isRequired,
     },
 
     render: function () {
 
+        return (
+            
+            React.createElement('ul', {moviesArray: movies}, // w render zawsze musimy zwracac tylko jeden element, dlatego tutaj 
+                                                                // na gorze dajemy 'ul' ktore jednoczesnie bedzie wrapperem dla mapowanych elementow
+                                                                // (ten "tylko jeden element" moze zawierac wiele innych w sobie)
+                movies.map(function(movie){
 
-        movies.map(function (movie) {
+                    return(
+                        React.createElement('li', {key: movie.id},
+                            React.createElement(Movie, {movieObject: movie})
+                        )
 
-            React.createElement('li', { key: movie.id },
-                React.createElement(Movie, { movieObject: movie })
-
-            );
-        });
+                    );
+                })
+            )
+        );
 
     },
 
@@ -125,9 +133,7 @@ var MoviesList = React.createClass({
 var element = 
     React.createElement('div', {}, 
         React.createElement('h1', {}, 'Lista filmow'),
-        React.createElement('ul', {}, 
-            React.createElement(MoviesList, {movies:movies})
-        )
+        React.createElement(MoviesList, {moviesArray: movies})
 );
 
 ReactDOM.render(element, document.getElementById('app'));
