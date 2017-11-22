@@ -98,6 +98,8 @@ var MovieImage = React.createClass({
 });
 
 
+
+
 var MoviesList = React.createClass({
 
     propTypes: {
@@ -129,6 +131,12 @@ var MoviesList = React.createClass({
 }); 
 
 
+var moviesElements = movies.map(function (movie) {
+
+    return React.createElement('li', {key: movie.id},
+        React.createElement(Movie, {movieObject: movie})
+    );
+});
 
 var element = 
     React.createElement('div', {}, 
